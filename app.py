@@ -4,9 +4,44 @@ from tkinter.ttk import Combobox
 from tkinter import font
 
 
+# Functions
+
+def change_font(event):
+    font_family = font_families[font_type.current()]
+    font_size = font_size_ver.get()
+    text_box.config(font=(font_family, font_size))
+    
+def change_font_size(event):
+    font_family = font_families[font_type.current()]
+    font_size = font_size_ver.get()
+    text_box.config(font=(font_family, font_size))
+    
+def change_font_family(event):
+    font_family = font_families[font_type.current()]
+    font_size = font_size_ver.get()
+    text_box.config(font=(font_family, font_size))
+    
+def change_text_color(event):
+    text_color = text_color_ver.get()
+    text_box.config(fg=text_color)
+    
+def change_text_type(event):
+    text_type = text_type_ver.get()
+    text_box.config(font=(text_type))
+    
+
+
+
+
+
+
+
+
+
+# GUI
 root = tk.Tk()
 root.title("LiteDoc")
-root.geometry("1000x600")
+root.geometry("1100x600")
 
 root.iconbitmap("images/favicon.ico")
 
@@ -93,12 +128,14 @@ tools_menu.add_command(label="Character Count", image=character_count, compound=
 tools_menu.add_command(label="Spell Check", image=spell_check, compound=tk.LEFT)
 tools_menu.add_command(label="Convert Case", image=convert_case, compound=tk.LEFT)
 
+# Add Menus to Menubar
 menubar.add_cascade(label="File", menu=file_menu)
 menubar.add_cascade(label="Edit", menu=edit_menu)
 menubar.add_cascade(label="View", menu=view_menu)
 menubar.add_cascade(label="Tools", menu=tools_menu)
 
 
+# Top Bar
 top_bar = Label(root)
 top_bar.pack(side=TOP, fill=X, padx=5, pady=5)
 
@@ -107,14 +144,14 @@ text_type = Combobox(top_bar)
 text_type.grid(row=0, column=0, padx=(5, 5))
 
 
-separator1 = Label(top_bar, text="|", foreground = 'gray')  # Change bg color as needed
+separator1 = Label(top_bar, text="|", foreground = 'gray')
 separator1.grid(row=0, column=1)
 
 
 text_color = Combobox(top_bar, width=5)
 text_color.grid(row=0, column=2, padx=(5, 5))
 
-separator2 = Label(top_bar, text="|", foreground = 'gray')  # Change bg color as needed
+separator2 = Label(top_bar, text="|", foreground = 'gray')
 separator2.grid(row=0, column=3)
 
 
@@ -136,7 +173,7 @@ font_size.current(4)
 font_size.grid(row=0, column=7, padx=(5, 5))
 
 
-separator3 = Label(top_bar, text="|", foreground = 'gray')  # Change bg color as needed
+separator3 = Label(top_bar, text="|", foreground = 'gray')
 separator3.grid(row=0, column=8)
 
 left_align_icon = tk.PhotoImage(file="images/left-align.png")
@@ -152,7 +189,7 @@ right_align_button = tk.Button(top_bar, image=right_align_icon, command=lambda: 
 right_align_button.grid(row=0, column=11, padx=(5, 5))
 
 
-separator4 = Label(top_bar, text="|", foreground = 'gray')  # Change bg color as needed
+separator4 = Label(top_bar, text="|", foreground = 'gray')
 separator4.grid(row=0, column=12)
 
 
@@ -162,8 +199,22 @@ font_type = Combobox(top_bar, textvariable=font_family_ver, values=font_families
 font_type.current(font_families.index('Poppins'))
 font_type.grid(row=0, column=13, padx=(5, 5))
 
-text_box = tk.Text(root)
-text_box.pack(fill='both', padx=80, pady=30, expand=True)
+
+text_frame = tk.Frame(root)
+text_frame.pack(fill='both', padx=80, pady=30, expand=True, side='left', anchor='nw')
+
+# Text Box
+text_box = tk.Text(text_frame, wrap='word', undo=True, font=('Poppins', 12), padx=50, pady=50, relief='flat')
+text_box.pack(fill='both', side='left', expand=True)
+
+# Scrollbar
+scroll = tk.Scrollbar(text_frame, command=text_box.yview, relief='flat')
+scroll.pack(side='right', fill='y', anchor='ne')
+
+text_box.config(yscrollcommand=scroll.set)
+scroll.config(command=text_box.yview)
+
+
 
 
 root.mainloop()
