@@ -35,12 +35,9 @@ def change_text_type(event):
 
 
 
-
-
-
 # GUI
 root = tk.Tk()
-root.title("LiteDoc")
+root.title("LiteDocs")
 root.geometry("1100x600")
 
 root.iconbitmap("images/favicon.ico")
