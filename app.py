@@ -64,43 +64,34 @@ def make_link():
 
     
 def insert_emoji():
-    # This is a simple example with a predefined list of emojis.
-    # You would need to replace this with a custom dialog or another way to select an emoji.
     emojis = [ "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "😚", "😋", "😛", "😝", "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🥸", "🤩", "🥳", "😏", "😒", "😞", "😔", "😟", "😕", "🙁", "☹️", "😣", "😖", "😫", "😩", "🥺", "😢", "😭", "😤", "😠", "😡", "🤬", "🤯", "😳", "🥵", "🥶", "😱", "😨", "😰", "😥", "😓", "🤗", "🤔", "🤭", "🤫", "🤥", "😶", "😐", "😑", "😬", "🙄", "😯", "😦", "😧", "😮", "😲", "🥱", "😴", "🤤", "😪", "😵", "🤐", "🥴", "🤢", "🤮", "🤧", "😷", "🤒", "🤕", "🤑", "🤠", "😈", "👿", "👹", "👺", "🤡", "💩", "👻", "💀", "☠️", "👽", "👾", "🤖", "🎃", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾", "🙈", "🙉", "🙊"]
-    #emojis = [ "😀", "😃", "😄"]
+    
     def insert_emoji_and_close(emoji):
         text_box.insert(tk.INSERT, emoji)
         emoji_picker.destroy()
 
-    # Create a new Toplevel window
     emoji_picker = tk.Toplevel(root)
     emoji_picker.title("Select an emoji")
 
-    # Create a Scrollbar and a Canvas
     scrollbar = tk.Scrollbar(emoji_picker)
     canvas = tk.Canvas(emoji_picker, yscrollcommand=scrollbar.set)
     scrollbar.config(command=canvas.yview)
     scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
     canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
-    # Create a Frame inside the Canvas
     frame = tk.Frame(canvas)
     canvas.create_window((0, 0), window=frame, anchor=tk.NW)
 
-    # Create a button for each emoji
     for i, emoji in enumerate(emojis):
         button = tk.Button(frame, text=emoji, command=lambda emoji=emoji: insert_emoji_and_close(emoji))
-        button.grid(row=i // 10, column=i % 10)  # Arrange the buttons in a 10x10 grid
-
-    # Update the scroll region of the Canvas
+        button.grid(row=i // 10, column=i % 10)  
+        
     frame.update_idletasks()
     canvas.config(scrollregion=canvas.bbox(tk.ALL))
 
-    # Set the size of the emoji picker window
-    emoji_picker.geometry("350x350")  # Width x Height
+    emoji_picker.geometry("350x350")
     emoji_picker.iconbitmap("images/favicon.ico")
 
-    # Center the emoji picker window
     emoji_picker.update_idletasks()
     x = root.winfo_x() + (root.winfo_width() // 2) - (emoji_picker.winfo_width() // 2)
     y = root.winfo_y() + (root.winfo_height() // 2) - (emoji_picker.winfo_height() // 2)
@@ -112,9 +103,7 @@ def insert_image():
     if file_path:
         image = Image.open(file_path)
         photo = ImageTk.PhotoImage(image)
-        # Insert the image at the current insertion point
         text_box.image_create(tk.INSERT, image=photo)
-        # Move the insertion point to the next line
         text_box.mark_set(tk.INSERT, "insert +1l")
     
 def change_font_size(event=None):
