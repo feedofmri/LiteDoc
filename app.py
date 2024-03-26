@@ -29,6 +29,14 @@ status_bar = tk.PhotoImage(file="images/status-bar.png")
 zoom_in = tk.PhotoImage(file="images/zoom-in.png")
 zoom_out = tk.PhotoImage(file="images/zoom-out.png")
 
+themes = tk.PhotoImage(file="images/themes.png")
+
+sunrise_serenity = tk.PhotoImage(file="images/sunrise-serenity.png")
+ocean_breeze = tk.PhotoImage(file="images/ocean-breeze.png")
+golden_glow = tk.PhotoImage(file="images/golden-glow.png")
+forest_retreat = tk.PhotoImage(file="images/forest-retreat.png")
+rose_quartz = tk.PhotoImage(file="images/rose-quartz.png")
+
 word_count = tk.PhotoImage(file="images/word-count.png")
 character_count = tk.PhotoImage(file="images/character-count.png")
 spell_check = tk.PhotoImage(file="images/spell-check.png")
@@ -60,11 +68,11 @@ view_menu.add_command(label="Zoom In", accelerator="Ctrl+Shift+I", image=zoom_in
 view_menu.add_command(label="Zoom Out", accelerator="Ctrl+Shift+O", image=zoom_out, compound=tk.LEFT)
 view_menu.add_separator()
 
-theme_menu.add_radiobutton(label="Light Theme", compound=tk.LEFT)
-theme_menu.add_radiobutton(label="Dark Theme", compound=tk.LEFT)
-theme_menu.add_radiobutton(label="Blue Theme", compound=tk.LEFT)
-theme_menu.add_radiobutton(label="Green Theme", compound=tk.LEFT)
-theme_menu.add_radiobutton(label="Purple Theme", compound=tk.LEFT)
+theme_menu.add_radiobutton(label="Sunrise Serenity", compound=tk.LEFT, image=sunrise_serenity)
+theme_menu.add_radiobutton(label="Ocean Breeze", compound=tk.LEFT, image=ocean_breeze)
+theme_menu.add_radiobutton(label="Golden Glow", compound=tk.LEFT, image=golden_glow)
+theme_menu.add_radiobutton(label="Forest Retreat", compound=tk.LEFT, image=forest_retreat)
+theme_menu.add_radiobutton(label="Rose Quartz", compound=tk.LEFT, image=rose_quartz)
 view_menu.add_cascade(label="Themes", menu=theme_menu)
 view_menu.add_checkbutton(label="Status Bar", compound=tk.LEFT)
 
