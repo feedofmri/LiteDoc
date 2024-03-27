@@ -201,6 +201,20 @@ def convert_case():
         text_box.delete("sel.first", "sel.last")
         text_box.insert("sel.first", selected_text.upper())
     
+def bullet_list():
+    line = text_box.get("insert linestart", "insert lineend")
+    if line.startswith("• "):
+        text_box.delete("insert linestart", "insert linestart + 2 chars")
+    else:
+        text_box.insert("insert linestart", "• ")
+        
+def number_list():
+    line = text_box.get("insert linestart", "insert lineend")
+    if line.startswith("1. "):
+        text_box.delete("insert linestart", "insert linestart + 3 chars")
+    else:
+        text_box.insert("insert linestart", "1. ")
+
 
 def left_align():
     text_box.tag_add("left", "sel.first", "sel.last")
@@ -369,30 +383,30 @@ separator.grid(row=0, column=9)
 
 link_icon = tk.PhotoImage(file="images/link.png")
 link_button = tk.Button(top_bar, image=link_icon, command=make_link)
-link_button.grid(row=0, column=14, padx=(5, 5))
+link_button.grid(row=0, column=16, padx=(5, 5))
 
 emoji_icon = tk.PhotoImage(file="images/emoji.png")
 emoji_button = tk.Button(top_bar, image=emoji_icon, command=insert_emoji)
-emoji_button.grid(row=0, column=15, padx=(5, 5))
+emoji_button.grid(row=0, column=17, padx=(5, 5))
 
 image_icon = tk.PhotoImage(file="images/image.png")
 image_button = tk.Button(top_bar, image=image_icon, command=insert_image)
-image_button.grid(row=0, column=16, padx=(5, 5))
+image_button.grid(row=0, column=18, padx=(5, 5))
 
 separator = tk.Label(top_bar, text=" | ", foreground="grey")
-separator.grid(row=0, column=17)
+separator.grid(row=0, column=19)
 
 font_size_var = tk.StringVar()
 font_size = Combobox(top_bar, textvariable=font_size_var, values=[8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72], width=3, state='readonly')
 font_size.current(4)
-font_size.grid(row=0, column=18, padx=(5, 5))
+font_size.grid(row=0, column=20, padx=(5, 5))
 font_size.bind("<<ComboboxSelected>>", change_font_size)
 
 font_families = font.families()
 font_family_var = tk.StringVar()
 font_type = Combobox(top_bar, textvariable=font_family_var, values=font_families, width=20, state='readonly')
 font_type.current(font_families.index('Poppins'))
-font_type.grid(row=0, column=19, padx=(5, 5))
+font_type.grid(row=0, column=21, padx=(5, 5))
 font_type.bind("<<ComboboxSelected>>", change_font)
 
 text_frame = tk.Frame(root)
@@ -410,20 +424,29 @@ text_box.config(yscrollcommand=scroll.set)
 
 text_box.bind("<Control-MouseWheel>", on_ctrl_scroll)
 
+
+bullet_icon = tk.PhotoImage(file="images/bullet.png")
+bullet_button = tk.Button(top_bar, image=bullet_icon, command=bullet_list)
+bullet_button.grid(row=0, column=10, padx=(5, 5))
+
+number_icon = tk.PhotoImage(file="images/number.png")
+number_button = tk.Button(top_bar, image=number_icon, command=number_list)
+number_button.grid(row=0, column=11, padx=(5, 5))
+
 left_align_icon = tk.PhotoImage(file="images/left-align.png")
 left_align_button = tk.Button(top_bar, image=left_align_icon, command=left_align)
-left_align_button.grid(row=0, column=10, padx=(5, 5))
+left_align_button.grid(row=0, column=12, padx=(5, 5))
 
 center_align_icon = tk.PhotoImage(file="images/center-align.png")
 center_align_button = tk.Button(top_bar, image=center_align_icon, command=center_align)
-center_align_button.grid(row=0, column=11, padx=(5, 5))
+center_align_button.grid(row=0, column=13, padx=(5, 5))
 
 right_align_icon = tk.PhotoImage(file="images/right-align.png")
 right_align_button = tk.Button(top_bar, image=right_align_icon, command=right_align)
-right_align_button.grid(row=0, column=12, padx=(5, 5))
+right_align_button.grid(row=0, column=14, padx=(5, 5))
 
 separator = tk.Label(top_bar, text=" | ", foreground="grey")
-separator.grid(row=0, column=13)
+separator.grid(row=0, column=15)
                         
 
 root.mainloop()
