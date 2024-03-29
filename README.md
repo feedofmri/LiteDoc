@@ -1,6 +1,6 @@
 # LiteDocs
 
-![LiteDocs Cover](cover.jng)
+![LiteDocs Cover](cover.jpg)
 
 Welcome to LiteDocs, a lightweight and user-friendly text editor designed for effortless writing and editing. Crafted using the Python language, this software boasts a charming interface built with the tkinter module.
 
