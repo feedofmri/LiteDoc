@@ -13,7 +13,7 @@ Welcome to LiteDocs, a lightweight and user-friendly text editor designed for ef
 
 ## Usage
 1. Clone the repository: `git clone https://github.com/yourusername/LiteDocs.git`
-2. Run LiteDocs using Python: `python litedocs.py`
+2. Run LiteDocs using Python: `python app.py`
 3. Start writing and editing your documents effortlessly!
 
 ## Contributing
